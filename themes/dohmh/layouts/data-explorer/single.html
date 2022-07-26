@@ -1217,6 +1217,7 @@
                         indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
                         indicatorMeasurses = indicator?.Measures;
                         indicatorId = indicator?.IndicatorID;     
+                        createCitation() // runs createCitation on updating indicator
                         
                         // console.log('==========================================================================')
                         // console.log('Load Indicator - IndicatorId: ', indicatorId)
@@ -1673,8 +1674,10 @@
 
                     <div class="row mb-4">
                         <div class="col">
-                            <h4>Related:</h4>
-                            <p>Insert related content via partial, here.</p>
+                            <h4>Cite:</h4>
+                            <input type="text" id="citeText" value="" style="display:inline-block; width:85%; font-size: 12px;">
+                            <button type="button" id="citeButton" onclick="copyCitation()" class="btn btn-sm btn-light float-right" style="display:inline-block">Copy</button>
+
                         </div>
                     </div>
 
@@ -1735,6 +1738,36 @@
         window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
       });
 
+
+    // Create Citation
+      function createCitation(){
+
+            // Create date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+
+            // Create citation
+            var citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
+    
+            // Add to form
+            document.getElementById('citeText').setAttribute('value',citation);
+    }
+
+
+
+    function copyCitation(){
+        var citeText = document.getElementById('citeText')
+        citeText.select()
+        citeText.setSelectionRange(0,99999);
+        navigator.clipboard.writeText(citeText.value)
+        var btn = document.getElementById('citeButton')
+        btn.innerHTML = "Copied!"
+    }
+
+    createCitation();
 
 
    </script>
