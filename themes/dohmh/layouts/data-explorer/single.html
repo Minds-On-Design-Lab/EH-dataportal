@@ -1588,7 +1588,7 @@
                     
                     </div>
                     
-                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                    <div class="tab-content bg-white" id="tabs-01-content">
                         <!-- TABLE TAB -->
                         <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                             <div class="float right">
@@ -1653,6 +1653,25 @@
                             <div class="border mt-4" style="height: 550px; clear: both">
                                 <!-- INSERT LINKS CHART HERE -->
                                 <div id="links" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-4 ml-auto">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="downloadDD" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download Data
+                                </button>
+                                <div class="dropdown-menu py-1 px-1" aria-labelledby="downloadDD">
+                                    <ul class="extensible-list">
+                                        <li>
+                                            <a class="active" href="#downloadDD" title="Link" disabled>This view</a>
+                                        </li>
+                                        <li>
+                                            <a href="#downloadDD" title="Link" onclick="runDataDownload()">Full indicator</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1774,6 +1793,29 @@
     }
 
     createCitation();
+
+    var downloadTable;
+    var dataURL; 
+    var downloadTableCSV
+    var csvData
+
+    // download data function
+    function runDataDownload() {
+        console.log('Downloading data for indicator ' + indicatorId)
+        dataURL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/' + indicatorId + '.json'
+        console.log('Data are at: ' + dataURL)
+        aq.loadJSON(`${dataURL}`).then(function(data) {
+            downloadTable = data;
+            downloadTableCSV = downloadTable.toCSV()
+            // Data URI
+            csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+            var hiddenElement = document.createElement('a');  
+            hiddenElement.href = csvData;
+            hiddenElement.target = '_blank';  
+            hiddenElement.download = 'NYC EH Data Portal: ' + indicatorName + '.csv'
+            hiddenElement.click();
+        })
+    }
 
 
    </script>
