@@ -23,7 +23,8 @@
             </nav>
 
             <div class="row mb-2">
-                <div class="col border-bottom mx-2 ml-0 pl-0 pb-2 mb-2">
+                <div class="col mx-2 ml-0 pl-0 py-1 mb-2">
+                    <span class="DElabel">Topic</span>
                     <h2>{{ .Title}}</h2>
                 </div>
             </div>
@@ -996,7 +997,7 @@
                         const indicatorTitle = document.querySelector('.indicator-title');
                         const indicatorDescription = document.querySelector('.indicator-description');
                         indicatorTitle.innerHTML = title;
-                        indicatorDescription.innerHTML = `<strong>Indicator description: </strong> ${desc}`;
+                        indicatorDescription.innerHTML = `${desc}`;
                     }
 
                     // Renders copy for the About the measures and the Data sources sections
@@ -1218,6 +1219,14 @@
                         indicatorMeasurses = indicator?.Measures;
                         indicatorId = indicator?.IndicatorID;     
                         createCitation() // runs createCitation on updating indicator
+
+                        //INSERT TITLES HERE.
+                        document.getElementById('summaryTitle').innerHTML = indicatorName
+                        document.getElementById('mapTitle').innerHTML = indicatorName
+                        document.getElementById('trendTitle').innerHTML = indicatorName
+                        document.getElementById('linksTitle').innerHTML = indicatorName
+
+
                         
                         // console.log('==========================================================================')
                         // console.log('Load Indicator - IndicatorId: ', indicatorId)
@@ -1533,11 +1542,26 @@
                 font-size: 12px;
             }
 
+            .DElabel {
+                font-size: 12px;
+                text-transform: uppercase;
+                color: #707070;
+                margin-bottom: 10px;
+            }
+
+            .indSubTitle {
+                font-size: 18px;
+                font-weight: bold;
+                color: #707070
+            }
+
             
             </style>
 
             <div class="row">
                 <div class="col-md-4">
+                    <span class='DElabel d-none d-md-block'>About this topic</span>
+
                     <div class="card fs-sm mb-2 topic-text d-none d-md-block">
                         <!-- Content truncate-->
                         {{ .Content }}
@@ -1547,22 +1571,36 @@
                 </div>
 
                 <div class="col-md-8">
-                    
-                    <div class="dropdown float-right">
-                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
-                          More {{ .Title}} data
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
-                            <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12 pt-0">
+
+                            <span class="DElabel">Dataset</span>
+                            <h3 class="indicator-title"></h3>
+
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 pt-0">
+
+                            <span class="DElabel text-end">Change dataset</span>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <span class="d-none d-lg-block"></span>{{ .Title}} data</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
+                                    <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <h3 class="indicator-title"></h3>
 
 
-                    <div style="clear:both" class="my-3">
-                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
+                    <div style="clear:both" class="mt-1 mb-3">
+                        <span class="DElabel">Description:</span><br>
+                        <p class="fs-sm indicator-description"></p>
                     </div>
 
+                    <span class="DElabel">Data views:</span><br>
                     <div class="nav nav-pills bg-white device-xs" role="tablist">
 
                         <a class="nav-item nav-link flex-fill active" id="tab-btn-table" href="#tab-table"
@@ -1608,8 +1646,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="summary-table" class="border mt-4">
-                                <!-- INSERT SUMMARY TABLE HERE -->
+
+                            <div class="mt-4">
+                                <span id="summaryTitle" class="indSubTitle">Summary indicator title</span>
+                                <div id="summary-table">
+                                    <!-- INSERT SUMMARY TABLE HERE -->
+                                </div>
                             </div>
                         </div> 
                         <!-- MAP TAB -->
@@ -1623,7 +1665,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="border mt-4">
+                            <div class="mt-4">
+                                <span id="mapTitle" class="indSubTitle">Map indicator title</span>
                                 <div id="map" width=600 height=500 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
                             </div>                        
                         </div>
@@ -1636,7 +1679,8 @@
                                   <!-- INSERT MENU ITEMS HERE -->
                                 </div>
                             </div>
-                            <div class="border mt-4">
+                            <div class="mt-4">
+                                <span id="trendTitle" class="indSubTitle">Trend indicator title</span>
                                 <!-- INSERT TREND CHART HERE -->
                                 <div id="trend" style="width: 100%"></div>
                             </div>
@@ -1650,7 +1694,8 @@
                                     <!-- INSERT MENU ITEMS HERE -->
                                 </div>
                             </div>
-                            <div class="border mt-4" style="height: 550px; clear: both">
+                            <div class="mt-4" style="height: 550px; clear: both">
+                                <span id="linksTitle" class="indSubTitle">Links indicator title</span>
                                 <!-- INSERT LINKS CHART HERE -->
                                 <div id="links" style="width: 100%"></div>
                             </div>
@@ -1660,7 +1705,7 @@
                     <div class="row mb-2">
                         <div class="col-4 ml-auto">
                             <div class="dropdown float-right">
-                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="downloadDD" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download Data
+                                <button class="btn btn-sm float-right btn-outline-light text-secondary dropdown-toggle" type="button" id="downloadDD" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download Data
                                 </button>
                                 <div class="dropdown-menu py-1 px-1" aria-labelledby="downloadDD">
                                     <ul class="extensible-list">
@@ -1679,7 +1724,7 @@
                     <div class="row">
                         <div class="col-md-4 col-xs-12">
                             <div class="btn-toggle">
-                                <button class="btn btn-block btn-md btn-outline-light text-primary" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+                                <button class="btn btn-block btn-md btn-outline-light text-secondary" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
                                     <span class="title"><i class="fas fa-info-circle mr-1"></i>About the Measures</span>
                                 </button>
                             </div>
@@ -1692,7 +1737,7 @@
 
                         <div class="col-md-4 col-xs-12">
                             <div class="btn-toggle">
-                                <button class="btn btn-block btn-md btn-outline-light text-primary" data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false" aria-controls="toggle-target-2">
+                                <button class="btn btn-block btn-md btn-outline-light text-secondary" data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false" aria-controls="toggle-target-2">
                                     <span class="title"><i class="fas fa-database mr-1"></i>Data sources</span>
                                 </button>
                             </div>
@@ -1704,7 +1749,7 @@
                         </div>
 
                         <div class="col-md-4 col-xs-12">
-                            <button class="btn btn-block btn-md btn-outline-light text-primary" onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                            <button class="btn btn-block btn-md btn-outline-light text-secondary" onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
                             <input type="text" id="citeText" value="" style="display:inline-block; width:100%; height: 40px; font-size: 14px;" class="my-2">
                         </div>
                     </div>
