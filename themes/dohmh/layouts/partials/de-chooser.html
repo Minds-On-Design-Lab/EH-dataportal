@@ -1,0 +1,171 @@
+<style>
+    .show {
+    display:block;
+}
+
+    .hide {
+    display:none;
+}
+
+</style>
+
+<div class="row mt-4 d-flex align-items-start" id="topics">
+    <div class="col-6">
+        <!--List our key topics. On hover, it changes the second list-->
+        <span class="sm-label">Key topics:</span>
+        <div class="list-group">
+            <a href="#pageTitle" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action active" aria-current="true">Air quality</a>
+            <a href="#pageTitle" id="kt2" onclick="changeKT(2)"  class="kt list-group-item list-group-item-action">Climate and health</a>
+            <a href="#pageTitle" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing</a>
+            <a href="#pageTitle" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities</a>
+            <a href="#pageTitle" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design, public space, and transportation</a>
+            <a href="#pageTitle" id="kt6" onclick="changeKT(6)"  class="kt list-group-item list-group-item-action">Environmental health outcomes</a>
+            <a href="#pageTitle" id="kt7" onclick="changeKT(7)"  class="kt list-group-item list-group-item-action">Child health</a>
+            <a href="#pageTitle" id="kt8" onclick="changeKT(8)"  class="kt list-group-item list-group-item-action">Pests and pesticides</a>
+            <a href="#pageTitle" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink</a>
+            <hr>
+            <a href="#pageTitle" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action">All topics</a>
+
+
+          </div>
+
+    </div>
+
+
+
+
+    <div class="col-6" >
+        <!-- hover-able list that changes on keytopic selection -->
+        <span class="sm-label">Topics:</span>
+        <div style="height: 510px; overflow:scroll; overflow-y:scroll;">
+
+        <div id="output1" class="dumps show">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output2" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output3" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output4" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output5" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output6" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "healthoutcomes") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output7" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "childhealth") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output8" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "pests") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output9" class="dumps hide">
+            <ul>
+                {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+
+        <div id="output10" class="dumps hide">
+            <ul>
+                {{ range .RegularPages }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="col-12 hide">
+        <span class="sm-label">Datasets for this topic include...</span>
+        <div id="indicatorNames">
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function changeKT(x) {
+        console.log(x)
+        const all = document.querySelectorAll('.dumps')
+        all.forEach((dump) => {
+            dump.classList.remove('show')
+            dump.classList.add('hide')
+        });
+        const chosen = 'output'+x
+        console.log('chosen: ' + chosen)
+        document.getElementById(chosen).classList.remove('hide')
+
+        const KTs = document.querySelectorAll('.kt')
+        KTs.forEach((kt) => {
+            kt.classList.remove('active')
+        });
+
+        const link = 'kt'+x
+        document.getElementById(link).classList.add('active')
+    }
+
+</script>

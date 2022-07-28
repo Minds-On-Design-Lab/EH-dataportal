@@ -4,9 +4,10 @@
 
     <div class="col-md-10 mx-auto my-4">
 
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
+        <h1 id="pageTitle"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
 
+        <!--
         <div class="row">
             <div class="col">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -62,8 +63,11 @@
             </div>
 
         </div>
+        -->
 
-        <div class="row mt-4">
+        {{ partial "de-chooser.html" . }}
+
+        <div class="row mt-2">
             <div class="col">
             <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
                 {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
@@ -72,7 +76,6 @@
                 </p>
             </div>
         </div>
-
     </div>
 
 </article>
