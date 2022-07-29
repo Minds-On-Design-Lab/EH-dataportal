@@ -8,4 +8,4 @@ menu:
     main:
         identifier: '03'
 ---
-Get data sets on important environment and health topics for NYC. View maps, charts, and more.
+Data sets on important environmental health topics. Select a topic, and view maps, charts, and more.

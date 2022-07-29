@@ -1,13 +1,21 @@
-<div class="row mt-4 d-flex align-items-start" id="topics">
-    <div class="col-6">
+<div class="row d-flex align-items-start" id="topics">
+    <div class="col-md-6">
         <!--List our key topics. On hover, it changes the second list-->
-        <span class="sm-label">Key topics:</span>
+        <span class="sm-label sr-only">Key topics:</span>
         <div class="list-group">
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range  .RegularPages }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#pageTitle" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action active">All topics<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+
+            <span class="sm-label mt-1 pl-1">Sort by:</span>
+
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action active" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#pageTitle" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
            
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
@@ -58,15 +66,6 @@
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#pageTitle" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
-            <hr>
-
-            {{ $.Scratch.Set "counter" 0 }}
-            {{ range  .RegularPages }}
-                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
-            {{ end }}
-            <a href="#pageTitle" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action">All topics<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
-
-
           </div>
 
     </div>
@@ -74,12 +73,22 @@
 
 
 
-    <div class="col-6" >
+    <div class="col-md-6" >
         <!-- hover-able list that changes on keytopic selection -->
         <span class="sm-label">Topics:</span>
-        <div style="height: 460px; overflow:scroll; overflow-y:scroll;">
+        <div style="height: 458px; overflow:scroll; overflow-y:scroll;">
 
-        <div id="output1" class="dumps show">
+        <div id="output10" class="dumps how">
+            <ul>
+                {{ range .RegularPages }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+
+        <div id="output1" class="dumps hide">
             <ul>
                 {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
@@ -160,29 +169,19 @@
                 </ul>
         </div>
 
-
-        <div id="output10" class="dumps hide">
-            <ul>
-                {{ range .RegularPages }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
-                    </li>
-                {{end}}
-                </ul>
-        </div>
-
-
         </div>
 
 
 
     </div>
 
-
-    <div class="col-12 hide">
-        <div id="indicatorNames">
-
+    <div class="col-md-4 hide">
+        <div id="indicatorNames" class="hide">
+            Indicator names preview goes here
         </div>
+
     </div>
+
 </div>
 
 
