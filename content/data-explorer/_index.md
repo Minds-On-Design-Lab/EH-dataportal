@@ -8,4 +8,4 @@ menu:
     main:
         identifier: '03'
 ---
-Data sets on important environmental health topics. Select a topic, and view maps, charts, and more.
+Get data sets on important environmental health topics. Select an environmental health topic below.

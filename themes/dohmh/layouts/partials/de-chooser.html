@@ -3,69 +3,72 @@
         <!--List our key topics. On hover, it changes the second list-->
         <span class="sm-label sr-only">Key topics:</span>
         <div class="list-group">
-            {{ $.Scratch.Set "counter" 0 }}
-            {{ range  .RegularPages }}
-                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
-            {{ end }}
-            <a href="#pageTitle" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action active">All topics<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
-            <span class="sm-label mt-1 pl-1">Sort by:</span>
+            <span class="sm-label mt-1 pl-1">Filter by:</span>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
            
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt2" onclick="changeKT(2)"  class="kt list-group-item list-group-item-action">Climate and health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt2" onclick="changeKT(2)"  class="kt list-group-item list-group-item-action">Climate and health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
           
           
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design and transportation<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design and transportation<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "healthoutcomes") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt6" onclick="changeKT(6)"  class="kt list-group-item list-group-item-action">Environmental health outcomes<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt6" onclick="changeKT(6)"  class="kt list-group-item list-group-item-action">Environmental health outcomes<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "childhealth") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt7" onclick="changeKT(7)"  class="kt list-group-item list-group-item-action">Child health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt7" onclick="changeKT(7)"  class="kt list-group-item list-group-item-action">Child health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "pests") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt8" onclick="changeKT(8)"  class="kt list-group-item list-group-item-action">Pests and pesticides<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt8" onclick="changeKT(8)"  class="kt list-group-item list-group-item-action">Pests and pesticides<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
             {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
-            <a href="#pageTitle" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+            <a href="#chooser" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range  .RegularPages }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <hr>
+            <a href="#chooser" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action active">All topics<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span></a>
+
           </div>
 
     </div>
@@ -184,9 +187,59 @@
 
 </div>
 
+<!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
+{{- $subtopic_indicators_dict := newScratch -}}
+{{- $subtopic_indicators_map := newScratch -}}
+
+{{/*  iterate over all pages on the site  */}}
+
+{{- range .Site.Pages -}}
+    
+    {{/*  create a new "slice" (i.e., an array)  */}}
+    
+    {{- $indicators := slice -}}
+    {{- $subtopic_name := slice -}}
+    
+    {{/*  only process if it's a data explorer page */}}
+    
+    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+        
+        {{/*  turn params into strings  */}}
+        
+        {{- $subtopic := .RelPermalink | path.Base | string -}}
+
+        {{/*  subtopic names  */}}
+        
+        {{- $subtopic_title := .Title -}}
+
+        {{/*  get internal_ids  */}}
+        
+        {{- range .Params.indicators -}}
+            
+            {{/*  create an array of internal_ids  */}}
+            
+            {{- $indicators = $indicators | append .IndicatorID -}}
+        
+        {{- end -}}
+        
+        {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+        
+        {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
+        {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+
+    {{- end -}}
+    
+{{- end -}}
+
 
 
 <script>
+    var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+    console.log(subtopic_indicators)
+
+    var destination = document.getElementById('indicatorNames')    
+
     function changeKT(x) {
         console.log(x)
         const all = document.querySelectorAll('.dumps')
