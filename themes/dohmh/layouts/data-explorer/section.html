@@ -7,36 +7,6 @@
         <h1 id="pageTitle"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
 
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card de-card">
-                    <img class="card-img-top" src="/images/trend-chart.png" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary">Get trends...</h5>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card de-card">
-                    <img class="card-img-top" src="/images/data-map.png" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary">...maps...</h5>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card de-card">
-                    <img class="card-img-top" src="/images/links-chart.png" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary">...and more!</h5>
-                    </div>
-                  </div>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div class="col"><h2 id="chooser">Select a topic to get data:</h2></div>
-        </div>
 
         <!--
         <div class="row">
@@ -102,7 +72,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 mx-auto p-2" style="box-shadow: 2px 5px 3px #bebebe; border: 1px solid #bebebe; border-radius: 5px;">
             {{ partial "de-chooser.html" . }}
 
         </div>
@@ -118,6 +88,37 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card de-card">
+                <img class="card-img-top" src="/images/trend-chart.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Get trends...</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card de-card">
+                <img class="card-img-top" src="/images/data-map.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">...maps...</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card de-card">
+                <img class="card-img-top" src="/images/links-chart.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">...and more!</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
 
 {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
 {{ $secureJS := $js }}
