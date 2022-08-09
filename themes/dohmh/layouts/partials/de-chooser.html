@@ -7,63 +7,63 @@
             <span class="sm-label mt-1 pl-1">Filter by:</span>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
            
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt2" onclick="changeKT(2)"  class="kt list-group-item list-group-item-action">Climate and health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
           
           
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design and transportation<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "healthoutcomes") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt6" onclick="changeKT(6)"  class="kt list-group-item list-group-item-action">Environmental health outcomes<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "childhealth") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt7" onclick="changeKT(7)"  class="kt list-group-item list-group-item-action">Child health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "pests") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt8" onclick="changeKT(8)"  class="kt list-group-item list-group-item-action">Pests and pesticides<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range  .RegularPages }}
+            {{ range  ( where .Site.RegularPages "Section" "data-explorer") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <hr>
@@ -83,7 +83,7 @@
 
         <div id="output10" class="dumps how">
             <ul>
-                {{ range .RegularPages }}
+                {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -93,7 +93,7 @@
 
         <div id="output1" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -102,7 +102,7 @@
 
         <div id="output2" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -111,7 +111,7 @@
 
         <div id="output3" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -120,7 +120,7 @@
 
         <div id="output4" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -129,7 +129,7 @@
 
         <div id="output5" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -138,7 +138,7 @@
 
         <div id="output6" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "healthoutcomes") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -147,7 +147,7 @@
 
         <div id="output7" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "childhealth") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -156,7 +156,7 @@
 
         <div id="output8" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "pests") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -165,7 +165,7 @@
 
         <div id="output9" class="dumps hide">
             <ul>
-                {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
                     <li><a href="{{ .Permalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
