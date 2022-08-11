@@ -2,122 +2,160 @@
 
 <article class="container" id="skip-header-target">
 
+    <div class="row">
+
     <div class="col-md-10 mx-auto mt-4 mb-2">
 
         <h1 id="pageTitle"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
 
-
-        <!--
         <div class="row">
-            <div class="col">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Topics A to Z</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-search mr-2" aria-hidden="true"></i>Search topics</a>
-                    </li>
-                  </ul>
-            </div>
-        </div>
+            <div class="col-md-4 p-2 pl-0">
+                <p class="sm-label">Select a topic to view data:</p>
+                 {{ partial "de-chooser-accordion.html" . }}
+     
+             </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <div class="row">
-                            {{ range .Pages }}
-                                {{ if ne .RelPermalink "/data-explorer/all-data/"}}
-                                    <div class="col-md-4">
-                                        <p><a href="{{ .Permalink}}">{{ .Title}}</a></p>
-                                    </div>
-                                {{ end }}
-                            {{end}}
-                        </div>
+             <div class="col-md-8">
+                <div class="row my-4">
+                    <div class="col-12 mb-2">
+                        <p><strong class="text-primary"><i class="fas fa-bullseye mr-1"></i>Featured datasets:</strong>
+                        </p>
                     </div>
 
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <div class="row">
-                            <div class="col-8 mx-auto">
-                                <form class="autocomplete-form">
-                                    <div class="row no-gutters">
-                                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                                    <div class="col-9">
-                                        <div class="autocomplete-wrapper" width="100%">
-                                        <select name="all-data" id="all-data">
-                                            <option value="">Search data</option>
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
-                                    </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="air-quality/?id=2023">Air quality: PM2.5</a></span>
+                              </div>
+                          </div>
                     </div>
 
 
-                  </div>
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="housing-stability/?id=2365">Evictions</a></span>
+                              </div>
+                          </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="social-and-economic-conditions/?id=103">Poverty</a></span>
+                              </div>
+                          </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="asthma/?id=2383">Child asthma</a></span>
+                              </div>
+                          </div>  
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="weather-related-illness/?id=2411">Heat vulnerabilty</a></span>
+                              </div>
+                          </div>  
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="card de-card borderbox fs-sm">
+                            <div class="card-body mx-1">
+                                <span class="card-title text-primary"><a href="violence/?id=2400">Violence</a></span>
+                              </div>
+                          </div>  
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-12">
+                        <p><strong class="text-dark"><i class="far fa-question-circle mr-1"></i>What's inside:</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-4 mx-0">
+                        <div class="card de-card mb-2 borderbox">
+                            <div class="card-body">
+                                <span class="card-title text-dark"><em>Get trends...</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/trend-chart.png" alt="Card image cap">
+                          </div>
+                    </div>
+
+                    <div class="col-4 mx-0">
+                        <div class="card de-card mb-2 borderbox">
+                            <div class="card-body" style="text-align: center">
+                                <span class="card-title text-prdarkimary" ><em>...maps...</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/data-map.png" alt="Card image cap">
+            
+                          </div>
+                    </div>
+
+                    <div class="col-4 mx-0">
+                        <div class="card de-card borderbox">
+                            <div class="card-body" style="text-align: right">
+                                <span class="card-title text-dark"><em>...and more!</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/links-chart.png" alt="Card image cap">
+                          </div>
+                    </div>
+
+                </div>
+
+                <div class="row my-2 border-top">
+                    <div class="col">
+                        <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
+                            {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
+                            <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
+                            {{ end }}
+                            </p>
+                    </div>
+                </div>
+
+
+
             </div>
 
+
         </div>
-        -->
+
+
+
+
 
     </div>
+
+    </div>
+
+
+
+
+    <style>
+
+        .borderbox {
+            box-shadow: 2px 5px 3px #bebebe; 
+            border: 1px solid #bebebe; 
+            border-radius: 5px;}
+    </style>
+
+
 
 </article>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 mx-auto p-2" style="box-shadow: 2px 5px 3px #bebebe; border: 1px solid #bebebe; border-radius: 5px;">
-            {{ partial "de-chooser.html" . }}
-
-        </div>
-    </div>
-
-    <div class="row my-4">
-        <div class="col-md-8 mx-auto col-xs-12">
-        <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
-            {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
-            <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
-            {{ end }}
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row mb-4">
-        <div class="col-sm-4">
-            <div class="card de-card">
-                <img class="card-img-top" src="/images/trend-chart.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title text-primary">Get trends...</h5>
-                </div>
-              </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card de-card">
-                <img class="card-img-top" src="/images/data-map.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title text-primary">...maps...</h5>
-                </div>
-              </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card de-card">
-                <img class="card-img-top" src="/images/links-chart.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title text-primary">...and more!</h5>
-                </div>
-              </div>
-        </div>
-    </div>
-</div>
-
 
 
 {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
