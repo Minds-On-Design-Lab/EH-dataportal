@@ -70,9 +70,12 @@
             </nav>
 
             <div class="row mb-1">
+
                 <div class="col mx-2 ml-0 pl-0 py-2">
                     <h2>{{ .Title }}</h2>
                 </div>
+
+                
             </div>
 
             <style>
@@ -168,15 +171,41 @@
                 <div class="col-md-4">
 
                     <div class="card content-card mb-2 d-none d-md-block">
-                        <div class="card-content">
-                            <div class="card-body topic-text">
-                                <span class='home-label d-none d-md-block border-bottom mb-1'>About this topic</span>
-                                 {{ .Content  }}
+                        <div class="card-content fs-sm">
+                            <div class="nav nav-pills bg-white device-xs" role="tablist">
+                                <a class="nav-item nav-link flex-fill active" id="tab-btn-indicators" href="#tab-indicators" data-toggle="pill"
+                                aria-controls="tab-indicators" aria-selected="true" role="tab" style="text-decoration:none">
+                                    <i class="fas fa-database mr-1"></i>
+                                 <div class="d-none d-lg-inline-block py-1">Datasets</div>
+                             </a>  
+
+                                <a class="nav-item nav-link flex-fill" id="tab-btn-about" href="#tab-about" data-toggle="pill"
+                                   aria-controls="tab-about" aria-selected="false" role="tab" style="text-decoration:none">
+                                   <i class="fas fa-info-circle mr-1"></i>
+                                    <div class="d-none d-lg-inline-block py-1">About</div>
+                                </a>
+        
+      
                             </div>
 
+                            <div class="tab-content bg-white" id="tabs-02-content">
+
+                                <!-- DATASETS TAB -->
+                                <div class="tab-pane fade show active" id="tab-indicators" aria-labelledby="tab-btn-indicators" role="tabpanel">
+                                    <div id="indicator-list">
+                                        <!--rendered by renderIndicatorDropdown-->
+                                    </div>
+                                </div>
+
+                                <!-- ABOUT TAB -->
+                                <div class="tab-pane fade  p-2" id="tab-about" aria-labelledby="tab-btn-table"
+                                role="tabpanel">
+                                    <div class="topic-text">
+                                        {{ .Content }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -187,7 +216,15 @@
                         About {{ .Title }}
                     </button>
 
-                    <div class="card content-card topic-text">
+                    <!--Indicator description on desktop only-->
+                    <div class="d-none d-md-block">
+                        <h3 id="titleDesktop">Bicycle Network Coverage</h3>
+                        <p class="fs-sm indicator-description">The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>                        
+
+                    </div>
+
+                    <!--Indicator selection and description on mobile only-->
+                    <div class="card content-card topic-text d-block d-md-none">
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="dropdown">
@@ -746,6 +783,8 @@
                 const renderIndicatorDropdown = () => {
 
                     const indicatorDropdown = document.getElementById("indicator-dropdown");
+                    const indicatorList = document.getElementById('indicator-list')
+
                     let this_indicatorId;
                     let this_indicatorName;
                     let header;
@@ -754,6 +793,7 @@
 
                         header = `{{ .header }}`;
                         indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
+                        indicatorList.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
 
                         {{ range $index, $id := .IndicatorID }}
 
@@ -765,9 +805,11 @@
                             indicator = indicators.find(indicator => indicator.IndicatorID === this_indicatorId);
                             this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                             indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
-                            
+                            indicatorList.innerHTML += `<button class="btn btn-sm btn-block btn-outline-primary my-0 indicator-dropdown-item" onclick="loadIndicator(${this_indicatorId})"data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
+
                         {{ end }}
                     {{ end }}
+
 
                 }
                 
@@ -862,6 +904,7 @@
             const indicatorTitle = document.getElementById('dropdownIndicator')
 
             indicatorTitle.innerHTML = indicatorName
+            document.getElementById('titleDesktop').innerHTML = indicatorName
 
             loadData(indicatorId)
         }
