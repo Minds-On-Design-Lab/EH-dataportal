@@ -808,7 +808,7 @@
                             this_indicatorLabel = indicator?.IndicatorLabel ? indicator.IndicatorLabel : 'N/A';
 
                             indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
-                            indicatorList.innerHTML += `<button class="btn btn-sm btn-block btn-outline-light text-primary text-align-left my-0 indicator-dropdown-item text-align-left" onclick="loadIndicator(${this_indicatorId})"data-indicator-id="${this_indicatorId}">${this_indicatorLabel}</button>`
+                            indicatorList.innerHTML += `<button class="btn btn-sm btn-block btn-outline-light text-primary text-left my-0 indicator-dropdown-item text-align-left" onclick="loadIndicator(${this_indicatorId})"data-indicator-id="${this_indicatorId}">${this_indicatorLabel}</button>`
 
                         {{ end }}
                     {{ end }}
