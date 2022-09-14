@@ -218,7 +218,7 @@
 
                     <!--Indicator description on desktop only-->
                     <div class="d-none d-md-block">
-                        <h3 id="titleDesktop">Bicycle Network Coverage</h3>
+                        <h3 id="titleDesktop" class="fs-lg">Bicycle Network Coverage</h3>
                         <p class="fs-sm indicator-description">The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>                        
 
                     </div>
@@ -787,13 +787,14 @@
 
                     let this_indicatorId;
                     let this_indicatorName;
+                    let this_indicatorLabel;
                     let header;
                     
                     {{ range .Params.Indicators }}
 
                         header = `{{ .header }}`;
                         indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
-                        indicatorList.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
+                        indicatorList.innerHTML += header.length ? `<div class="pl-2 mt-2"><strong>${header}</strong></div>`: '';
 
                         {{ range $index, $id := .IndicatorID }}
 
@@ -804,8 +805,10 @@
                             this_indicatorId = {{ $id }}
                             indicator = indicators.find(indicator => indicator.IndicatorID === this_indicatorId);
                             this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                            this_indicatorLabel = indicator?.IndicatorLabel ? indicator.IndicatorLabel : 'N/A';
+
                             indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
-                            indicatorList.innerHTML += `<button class="btn btn-sm btn-block btn-outline-primary my-0 indicator-dropdown-item" onclick="loadIndicator(${this_indicatorId})"data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
+                            indicatorList.innerHTML += `<button class="btn btn-sm btn-block btn-outline-light text-primary text-align-left my-0 indicator-dropdown-item text-align-left" onclick="loadIndicator(${this_indicatorId})"data-indicator-id="${this_indicatorId}">${this_indicatorLabel}</button>`
 
                         {{ end }}
                     {{ end }}
